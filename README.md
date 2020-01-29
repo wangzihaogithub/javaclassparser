@@ -1,4 +1,4 @@
-### 用一个类(只依赖jdk)实现了java文件解析，你可以用这个类获取局部变量表，字节码，行号等
+### 这是一个java文件解析的类。 用一个类(只依赖jdk)实现了java文件解析，你可以用这个类获取局部变量表，字节码，行号等
 
  ---
 
@@ -30,7 +30,7 @@
 
  ---
   
-### 你可以这样使用它（还有更多信息等你来用）
+### 你可以这样使用它（还有更多信息等你来用）. 提示：path参数可以从ClassLoader中获取
 
     JavaClassFile javaClassFile = new JavaClassFile(path,className);
     
@@ -46,5 +46,4 @@
  
 作者邮箱 : 842156727@qq.com
 
-github地址 : [字节码栈深度.jpg] (字节码栈深度.jpg)
-
+github地址 : [https://github.com/wangzihaogithub/javaclassparser](https://github.com/wangzihaogithub/javaclassparser)
