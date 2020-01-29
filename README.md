@@ -4,6 +4,21 @@
 
 * 这个类toString后是个json，你也可以直接使用get方法获取你需要的类信息（比如：常量池）。
 
+
+### 你可以这样使用它（还有更多信息等你来用）. 提示：path参数可以从ClassLoader中获取
+
+    JavaClassFile javaClassFile = new JavaClassFile(path,className);
+    
+    Member[] fields = javaClassFile.getFields();//字段
+    Member[] methods = javaClassFile.getMethods();//方法
+    ConstantPool constantPool = javaClassFile.getConstantPool();//你可以查看常量池
+    Attribute[] attributes = javaClassFile.getAttributes();//你可以查看常量池
+    Attribute.LocalVariable[] localVariables = attributes[0].localVariableTable();//你可以查看局部变量
+    Opcodes opcodes = (Opcodes) attributes[0].get("opcodes");//你可以查看字节码
+    String localVariablesName = localVariables[0].name();//局部变量名称
+    
+ ---
+  
 ### 您能获得的数据如下图
 
 * 类依赖描述
@@ -29,20 +44,6 @@
 ![](image/数据结构2.jpg)
 
 ![](image/数据结构3.jpg)
-
- ---
-  
-### 你可以这样使用它（还有更多信息等你来用）. 提示：path参数可以从ClassLoader中获取
-
-    JavaClassFile javaClassFile = new JavaClassFile(path,className);
-    
-    Member[] fields = javaClassFile.getFields();//字段
-    Member[] methods = javaClassFile.getMethods();//方法
-    ConstantPool constantPool = javaClassFile.getConstantPool();//你可以查看常量池
-    Attribute[] attributes = javaClassFile.getAttributes();//你可以查看常量池
-    Attribute.LocalVariable[] localVariables = attributes[0].localVariableTable();//你可以查看局部变量
-    Opcodes opcodes = (Opcodes) attributes[0].get("opcodes");//你可以查看字节码
-    String localVariablesName = localVariables[0].name();//局部变量名称
 
  ---
  
