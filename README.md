@@ -7,8 +7,16 @@
 
 ### 你可以这样使用它（还有更多信息等你来用）. 提示：path参数可以从ClassLoader中获取
 
+    // 示例1
+    JavaClassFile javaClassFile = new JavaClassFile(MyBean.class);
+    List<JavaClassFile.Attribute.LocalVariable[]> localVariableTableList = javaClassFile.getLocalVariableTableList();
+    JavaClassFile.Member[] methods = javaClassFile.getMethods();
+    JavaClassFile.Member helloMethod = javaClassFile.getMethod("hello", new Class[]{String.class, int.class}, void.class);
+    String[] parameterNames = helloMethod.getParameterNames();
+    JavaClassFile.Attribute.LocalVariable[] localVariableTable = helloMethod.getLocalVariableTable();
+
+    // 示例2 
     JavaClassFile javaClassFile = new JavaClassFile(path,className);
-    
     Member[] fields = javaClassFile.getFields();//字段
     Member[] methods = javaClassFile.getMethods();//方法
     ConstantPool constantPool = javaClassFile.getConstantPool();//你可以查看常量池
@@ -20,6 +28,10 @@
  ---
   
 ### 您能获得的数据如下图
+
+* 例子
+
+![](image/例子.jpg)
 
 * 类依赖描述
 
