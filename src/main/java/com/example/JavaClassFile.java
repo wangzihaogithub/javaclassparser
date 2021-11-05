@@ -163,6 +163,9 @@ public class JavaClassFile {
     public ConstantPool getConstantPool() {
         return constantPool;
     }
+    public int getConstantPoolMemoryByteSize(){
+        return constantPool.getMemoryByteSize();
+    }
     public int getAccessFlags() {
         return accessFlags;
     }
@@ -368,7 +371,16 @@ public class JavaClassFile {
                 }
             }
         }
-
+        public int getMemoryByteSize(){
+            int mem = 0;
+            for (ConstantInfo constant : constants) {
+                if(constant == null){
+                    continue;
+                }
+                mem += constant.length();
+            }
+            return mem;
+        }
         private ConstantInfo readConstantInfo(int index,ClassReader reader){
             int tag = reader.readUint8();
             ConstantInfo constantInfo;

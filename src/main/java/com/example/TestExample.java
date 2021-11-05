@@ -33,6 +33,8 @@ public class TestExample {
         Attribute.CodeException[] exceptionTable = helloMethod.getExceptionTable();
         Attribute.StackMapFrame[] stackMapTable = helloMethod.getStackMapTable();
 
+        int memoryByteSize = javaClassFile.getConstantPool().getMemoryByteSize();
+
         System.out.println("localVariableTableList = " + localVariableTableList);
     }
 
