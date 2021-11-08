@@ -236,6 +236,25 @@ public class JavaClassFile {
         }
         return types;
     }
+    public List<Member> getMethod(String methodName){
+        List<Member> list = new ArrayList<>();
+        for (Member method : methods) {
+            if(methodName.equals(method.getName())){
+                list.add(method);
+            }
+        }
+        return list;
+    }
+    public Member getMethod(String methodName, Class<?>[] parameterClasses){
+        Member.Type[] parameterTypes = Member.Type.getArgumentTypes(parameterClasses);
+        for (Member method : methods) {
+            if(methodName.equals(method.getName())
+                    && Arrays.equals(method.getMethodArgumentTypes(),parameterTypes)){
+                return method;
+            }
+        }
+        return null;
+    }
     public Member getMethod(String methodName, Class<?>[] parameterTypes, Class<?> returnType){
         String methodDescriptor = Member.Type.getMethodDescriptor(parameterTypes,returnType);
         for(Member method : methods){
@@ -1909,11 +1928,10 @@ public class JavaClassFile {
             /**
              * Returns the {@link Type} values corresponding to the argument types of the given method.
              *
-             * @param method a method.
+             * @param classes a method classes.
              * @return the {@link Type} values corresponding to the argument types of the given method.
              */
-            public static Type[] getArgumentTypes(final Method method) {
-                Class<?>[] classes = method.getParameterTypes();
+            public static Type[] getArgumentTypes(final Class<?>[] classes) {
                 Type[] types = new Type[classes.length];
                 for (int i = classes.length - 1; i >= 0; --i) {
                     types[i] = getType(classes[i]);
